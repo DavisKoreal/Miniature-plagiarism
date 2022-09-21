@@ -5,64 +5,88 @@
 #include <iomanip>
 #include <fstream>
 
-class word {
+//this is the class word. We will be using it to store the word and the frequency of the word in the text
+class word 
+{
 public:
     std::string realword;
     int frequency;
-    word() {
+
+    word() 
+    {
         realword = " ";
         frequency = 0;
     }
-    word(std::string c) {
+    word(std::string c) 
+    {
         realword = c;
         frequency = 1;
     }
-    void addfrequency() {
+    void addfrequency() 
+    {
         frequency += 1;
     }
 };
 
 void createwordvector(std::vector<std::string> strings)
 {
-    std::vector <word> wordsvectorofthisstring;
+    std::vector <word> words;
     std::string wordd = "";
-    for (int i = 0; i < strings.size(); i++) {
+    
+    for (int i = 0; i < strings.size(); i++) 
+    {
+
         std::string str = strings[i];
-        for (auto x : str)
+        char *charpointer = &strings[i][0]; //pointer to the start of the word
+
+        while (*charpointer != '\0')
         {
-            if (x == ' ')
+            if ( *charpointer == ' ')
             {
-                std::cout << "We are now here and the size of wordvectorofthisstring is "<< wordsvectorofthisstring.size() << std::endl;
-                for (int i = 0; ((wordsvectorofthisstring.size() == 0) ? (i <= wordsvectorofthisstring.size()) : (i < wordsvectorofthisstring.size())); i++) {
-                    if (wordsvectorofthisstring.size() == 0) {
+                std::cout << "We are now here and the size of wordvectorofthisstring is "<< words.size() << std::endl;
+                for (int i = 0; ((words.size() == 0) ? (i <= words.size()) : (i < words.size())); i++) {
+                    if (words.size() == 0) 
+                    {
                         word newword(wordd);
-                        wordsvectorofthisstring.push_back(newword);
+                        words.push_back(newword);
                         wordd = "";
                     }
-                    else {
+                    else 
+                    {
                         bool alreadyin = false;
-                        for (int k = 0; k < wordsvectorofthisstring.size(); k++) {
-                            if (wordd == wordsvectorofthisstring[k].realword) {
-                                wordsvectorofthisstring[k].addfrequency();
+                        for (int k = 0; k < words.size(); k++) 
+                        {
+                            if (wordd == words[k].realword) 
+                            {
+                                words[k].addfrequency();
                                 alreadyin = true;
                             }
                         }
-                        if (alreadyin == false) {
+
+                        if (alreadyin == false) 
+                        {
                             word newword(wordd);
-                            wordsvectorofthisstring.push_back(newword);
+                            words.push_back(newword);
                             wordd = "";
                         }
                     }
                 }
             }
-            else {
-                wordd = wordd + x;
+            else 
+            {
+                wordd = wordd + (*charpointer);
             }
         }
+
+        charpointer++;
     }
-    std::cout << "We are now outputting the words in the vector wordsvectorofthisstring of size " << wordsvectorofthisstring.size() << std::endl;
-    for (int i = 0; i < wordsvectorofthisstring.size(); i++) {
-        std::cout << "Word " << std::setw(2) << std::left << i << " : " << std::setw(30) << std::left << wordsvectorofthisstring[i].realword << " Frequency : " << wordsvectorofthisstring[i].frequency << std::endl;
+    
+    
+    std::cout << "UNIQUE WORDS FOUND IN THE STRING: " << words.size() << std::endl;
+
+    for (int i = 0; i < words.size(); i++) 
+    {
+        std::cout << "Word " << std::setw(2) << std::left << i << " : " << std::setw(30) << std::left << words[i].realword << " Frequency : " << words[i].frequency << std::endl;
     }
 }
 
@@ -73,18 +97,24 @@ int main() {
 
     std::ifstream myfile;
     myfile.open("TEXTDATA.txt");
-    if (myfile.is_open()) {
-        while (myfile) { // equivalent to myfile.good()
+
+    if (myfile.is_open()) 
+    {
+        while (myfile) 
+        { // equivalent to myfile.good()
             std::string myline;
             std::getline(myfile, myline);
             //std::cout << myline << '\n';
             firststring.push_back(myline);
         }
-        for (int i = 0; i < firststring.size(); i++) {
+
+        for (int i = 0; i < firststring.size(); i++) 
+        {
             std::cout << firststring[i] << std::endl;
         }
     }
-    else {
+    else 
+    {
         std::cout << "Couldn't open file\n";
     }
   
