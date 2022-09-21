@@ -78,9 +78,10 @@ void createwordvector(std::vector<std::string> strings)
                 std::cout << "Adding a character to our word" << std::endl;
                 wordd = wordd + (*charpointer);
             }
+
+            charpointer++;
         }
 
-        charpointer++;
     }
     
     
