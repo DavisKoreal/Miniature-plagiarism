@@ -32,11 +32,12 @@ void createwordvector(std::vector<std::string> strings)
 {
     std::vector <word> words;
     std::string wordd = "";
+
+    std::cout << "The text entered has " << strings.size() << " lines. " << std::endl;
     
     for (int i = 0; i < strings.size(); i++) 
     {
-
-        std::string str = strings[i];
+        std::cout << "Operating on " << strings[i] << std::endl;
         char *charpointer = &strings[i][0]; //pointer to the start of the word
 
         while (*charpointer != '\0')
@@ -74,6 +75,7 @@ void createwordvector(std::vector<std::string> strings)
             }
             else 
             {
+                std::cout << "Adding a character to our word" << std::endl;
                 wordd = wordd + (*charpointer);
             }
         }
