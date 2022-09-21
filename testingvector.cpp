@@ -44,7 +44,7 @@ void createwordvector(std::vector<std::string> strings)
         {
             if ( *charpointer == ' ')
             {
-                std::cout << "We are now here and the size of wordvectorofthisstring is "<< words.size() << std::endl;
+                std::cout << "We have encountered a space and the number of words up to now is "<< words.size() << std::endl;
                 for (int i = 0; ((words.size() == 0) ? (i <= words.size()) : (i < words.size())); i++) {
                     if (words.size() == 0) 
                     {
@@ -67,6 +67,7 @@ void createwordvector(std::vector<std::string> strings)
                         if (alreadyin == false) 
                         {
                             word newword(wordd);
+                            std::cout << "Found a new word to add to our words collection " << std::endl;
                             words.push_back(newword);
                             wordd = "";
                         }
@@ -75,7 +76,7 @@ void createwordvector(std::vector<std::string> strings)
             }
             else 
             {
-                std::cout << "Adding a character to our word" << std::endl;
+                std::cout << "Adding a character "<< *charpointer << " to our word "<< wordd << std::endl;
                 wordd = wordd + (*charpointer);
             }
 
