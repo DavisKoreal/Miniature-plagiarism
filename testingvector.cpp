@@ -37,7 +37,7 @@ void createwordvector(std::vector<std::string> strings)
     
     for (int i = 0; i < strings.size(); i++) 
     {
-        std::cout << "Operating on " << strings[i] << std::endl;
+        std::cout << "Operating on string " << i <<" out of " << strings.size() << std::endl;
         char *charpointer = &strings[i][0]; //pointer to the start of the word
 
         while (*charpointer != '\0')
