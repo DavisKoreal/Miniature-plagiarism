@@ -42,9 +42,9 @@ void createwordvector(std::vector<std::string> strings)
 
         while (*charpointer != '\0')
         {
-            if ( *charpointer == ' ')
+            if (( *charpointer == ' ') || (*charpointer == '\n')|| (*charpointer == '.'))
             {
-                std::cout << "We have encountered a space and the number of words up to now is "<< words.size() << std::endl;
+                
                 for (int i = 0; ((words.size() == 0) ? (i <= words.size()) : (i < words.size())); i++) {
                     if (words.size() == 0) 
                     {
@@ -73,6 +73,8 @@ void createwordvector(std::vector<std::string> strings)
                         }
                     }
                 }
+
+                std::cout << "We encountered a space and the number of words up to now is " << words.size() << std::endl;
             }
             else 
             {
