@@ -5,7 +5,41 @@
 #include <iomanip>
 #include <fstream>
 
+bool isletter(char c)
+{
+    int ascii = int(c);
+    return (((ascii < 123) && (ascii > 96)) || ((ascii < 91) && (ascii > 64))) ? true : false;
+}
+
+/**void main()
+{
+    std::string name = "Hello world";
+    std::cout << name << std::endl;
+    std::cout << &name << std::endl;
+
+   // std::cout << name.size() << std::endl;
+   // std::cout << name[0] << std::endl;
+   // std::cout << *(&name + 2) << std::endl;
+
+    for (int i = 0; i < name.size(); i++)
+    {
+        std::cout << "The ASCII number for " <<name[i] << " is " << int (name[i]) << std::endl;
+
+        //std::cout << &name[i] << std::endl;
+        //std::cout << name[i].size() << std::endl;
+        //std::cout << std::cout << std::endl;
+    }
+    //bool stringprinted = printstring(name);
+    //std::cout << stringprinted << std::endl;
+
+    
+    //int* charnumber = name;
+
+}**/
+
 //this is the class word. We will be using it to store the word and the frequency of the word in the text
+
+
 class word 
 {
 public:
@@ -42,7 +76,7 @@ void createwordvector(std::vector<std::string> strings)
 
         while (*charpointer != '\0')
         {
-            if (( *charpointer == ' ') || (*charpointer == '\n')|| (*charpointer == '.'))
+            if (!isletter(*charpointer))
             {
                 
                 for (int i = 0; ((words.size() == 0) ? (i <= words.size()) : (i < words.size())); i++) {
@@ -55,6 +89,7 @@ void createwordvector(std::vector<std::string> strings)
                     else 
                     {
                         bool alreadyin = false;
+
                         for (int k = 0; k < words.size(); k++) 
                         {
                             if (wordd == words[k].realword) 
@@ -67,14 +102,14 @@ void createwordvector(std::vector<std::string> strings)
                         if (alreadyin == false) 
                         {
                             word newword(wordd);
-                            std::cout << "Found a new word to add to our words collection " << std::endl;
+                            std::cout << "Found a new word to add to our words collection " << std::endl<<std::endl;
                             words.push_back(newword);
                             wordd = "";
                         }
                     }
                 }
 
-                std::cout << "We encountered a space and the number of words up to now is " << words.size() << std::endl;
+                std::cout << "We encountered non-letter and the number of words up to now is " << words.size() << std::endl;
             }
             else 
             {
